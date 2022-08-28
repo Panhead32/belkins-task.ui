@@ -1,9 +1,11 @@
-<script setup lang="ts">
-</script>
 
 <template>
-  <div>Hello, world</div>
+  <TodoList />
 </template>
+
+<script setup lang="ts">
+import TodoList from "./components/todo-list.vue";
+</script>
 
 <style scoped>
 </style>
