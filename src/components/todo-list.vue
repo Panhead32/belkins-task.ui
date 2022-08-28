@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { TodoStore } from "../stores/store";
 import { reactive, ref, computed } from "vue";
-import { getTodos } from "../service/todos";
+import { getTodos, removeTodo } from "../service/todos";
 import TodoAdd from "./todo-add.vue";
 import TodoItem from "./todo-item.vue";
 
@@ -18,8 +18,14 @@ const tasks: Todo[] = reactive(await getTodos());
 const doneTodos = computed(() => tasks.filter((task) => task.done));
 const todos = computed(() => tasks.filter((task) => !task.done));
 
-async function removeTask(id: string): Promise<void> {
-  await axios.delete();
+function removeTask(id: string): void {
+  try {
+    removeTodo(id);
+    const index = tasks.findIndex((task) => task._id === id);
+    tasks.splice(index, 1);
+  } catch (error) {
+    console.error(error);
+  }
 }
 </script>
 

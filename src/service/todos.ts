@@ -27,9 +27,14 @@ export async function removeTodo(id: string) {
     
   }
 }
-export async function updateTodo(id: string) {
+interface body {
+  title?: string;
+  done?: boolean;
+}
+export async function updateTodo(id: string, body: body) {
   try {
-    await axios.delete(`${location}/todo/${id}`);
+    debugger
+    await axios.put(`${location}/todo/${id}`, body);
   } catch (error) {
     console.error(error);
     
