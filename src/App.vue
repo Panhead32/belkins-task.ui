@@ -1,6 +1,9 @@
 
 <template>
-  <TodoList />
+  <Suspense>
+    <TodoList />
+    <template #fallback> Loading... </template>
+  </Suspense>
 </template>
 
 <script setup lang="ts">
