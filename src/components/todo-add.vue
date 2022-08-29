@@ -45,10 +45,11 @@ watch(addFieldShow, async (newValue: boolean) => {
 
 const taskTitle = ref<string>("");
 async function addTask() {
-  const newItem: Todo = await store.createTodo(taskTitle.value);
-  store.todos.push(newItem);
-  taskTitle.value = "";
-  addFieldShow.value = false;
+  if (taskTitle.value) {
+    const newItem: Todo = await store.createTodo(taskTitle.value);
+    store.todos.push(newItem);
+    taskTitle.value = "";
+  }
 }
 </script>
 
