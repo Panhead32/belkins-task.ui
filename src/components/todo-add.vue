@@ -1,9 +1,6 @@
 <template>
   <div
-    class="task-add"
-    :style="[
-      addFieldShow ? 'border: 2px solid #535568; background: #383a4c;' : '',
-    ]"
+    :class="['todo-input', { active: addFieldShow }]"
     @click="addFieldShow = true"
   >
     <svg
@@ -27,7 +24,7 @@
       @keyup.escape="addFieldShow = false"
       @keyup.enter="addTask"
     />
-    <div class="task-add__placeholder" v-else>Add a task</div>
+    <div class="todo-input__placeholder" v-else>Add a task</div>
   </div>
 </template>
 
@@ -56,22 +53,36 @@ async function addTask() {
 </script>
 
 <style lang="scss">
-.task-add {
-  border: 1px solid #535568;
-  font-weight: 400;
-  color: #7a7c8d;
+.todo-input {
+  display: flex;
+  align-items: center;
+  background: #222435;
+  box-shadow: 0 0 0 1px #535568, 0 0 0 2px transparent;
+  border-radius: 10px;
+  padding: 20px;
   cursor: pointer;
-  &__placeholder {
-    width: 100%;
-  }
+  margin-bottom: 20px;
   &:hover {
-    color: #fafafd;
+    .todo-input__placeholder {
+      color: #fafafd;
+    }
   }
+  &.active {
+    box-shadow: 0 0 0 2px #535568;
+    background: #383a4c;
+  }
+  &__placeholder {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #7a7c8d;
+  }
+
   svg {
     padding-right: 20px;
   }
   input {
-    border: unset;
+    border: none;
     background: none;
     width: 100%;
     outline: none;

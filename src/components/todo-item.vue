@@ -1,8 +1,15 @@
 <template>
-  <div class="task-item">
-    <input type="checkbox" v-model="task.done" @click.stop />
-    <span>{{ task.title }}</span>
-    <div @click.stop="$emit('remove')">
+  <div class="todo-item">
+    <div class="todo-item__inner">
+      <input
+        class="todo-item__checkbox"
+        type="checkbox"
+        v-model="task.done"
+        @click.stop
+      />
+      <span class="todo-item__title">{{ task.title }}</span>
+    </div>
+    <div class="todo-item__action" @click.stop="$emit('remove')">
       <svg
         width="12"
         height="12"
@@ -27,11 +34,37 @@ defineProps<{
 </script>
 
 <style lang="scss">
-.task-item {
+.todo-item {
   background: #383a4c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.2s;
+  cursor: pointer;
   &:hover {
-    background: transparent;
-    border: 1px solid #535568;
+    background: #535568;
+    transition: 0.2s;
+  }
+  &:last-child {
+    margin-bottom: unset;
+  }
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__checkbox {
+    margin-right: 20px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #fff;
   }
 }
 </style>
