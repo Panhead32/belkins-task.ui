@@ -82,9 +82,9 @@ body * {
         color: #4ea2ff;
         margin-bottom: 20px;
         display: inline-block;
-        &::before{
-          content:'';
-          background-image:url('../assets/marked.svg');
+        &::before {
+          content: "";
+          background-image: url("../assets/marked.svg");
         }
       }
     }
