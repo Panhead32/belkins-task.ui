@@ -11,6 +11,10 @@
       />
     </div>
     <div v-if="doneTodos.length" class="todo-list__done">
+      <div class="todo-list__done-badge">
+        <img src="../assets/marked.svg" alt="" srcset="" />
+        Completed
+      </div>
       <TodoItem
         v-for="todo in doneTodos"
         :key="todo._id"
@@ -71,7 +75,7 @@ body * {
     padding-bottom: 20px;
     &__done {
       padding-top: 20px;
-      &:before {
+      &-badge {
         content: "Completed";
         background: #1e446e;
         border-radius: 4px;
@@ -82,10 +86,6 @@ body * {
         color: #4ea2ff;
         margin-bottom: 20px;
         display: inline-block;
-        &::before {
-          content: "";
-          background-image: url("../assets/marked.svg");
-        }
       }
     }
   }
