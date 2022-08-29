@@ -56,10 +56,12 @@ const currentItemTitle = ref<string>("");
 
 const input = ref<any>(null);
 async function editItemTitle() {
-  editCurrentItem.value = true;
-  await nextTick();
-  input.value.focus();
-  currentItemTitle.value = props.task.title;
+  if (!props.task.done) {
+    editCurrentItem.value = true;
+    await nextTick();
+    input.value.focus();
+    currentItemTitle.value = props.task.title;
+  }
 }
 async function editTitle() {
   const item = await store.updateTodo(props.task._id, {
