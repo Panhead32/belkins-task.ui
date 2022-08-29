@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div
+    :class="[{ active: addFieldShow }, 'task-add']"
+    @click="addFieldShow = true"
+  >
     <svg
       width="20"
       height="20"
@@ -13,20 +16,55 @@
       />
     </svg>
     <input
+      ref="input"
       type="text"
-      placeholder="Add a task "
       v-if="addFieldShow"
       @blur="addFieldShow = false"
+      @keyup.escape="addFieldShow = false"
     />
-    <span v-else @click="addFieldShow = true">Add a task</span>
+    <div class="task-add__placeholder" v-else>Add a task</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, nextTick } from "vue";
 
 const addFieldShow = ref<boolean>(false);
+const input = ref<any>(null);
+watch(addFieldShow, async (newValue: boolean) => {
+  if (newValue) {
+    await nextTick();
+    input.value.focus();
+  }
+});
 </script>
 
 <style lang="scss">
+.active {
+  background: #383a4c;
+  border: 2px solid #535568;
+}
+.task-add {
+  border: 1px solid #535568;
+  font-weight: 400;
+  color: #7a7c8d;
+  cursor: pointer;
+  &__placeholder {
+    width: 100%;
+  }
+  &:hover {
+    color: #fafafd;
+  }
+  svg {
+    padding-right: 20px;
+  }
+  input {
+    border: unset;
+    background: none;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    color: #fafafd;
+  }
+}
 </style>

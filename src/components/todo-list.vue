@@ -31,7 +31,7 @@ function removeTask(id: string): void {
 <template>
   <div>
     <div>To-do list</div>
-    <TodoAdd></TodoAdd>
+    <TodoAdd class="task" />
     <div>
       <TodoItem
         class="task"
@@ -55,10 +55,12 @@ function removeTask(id: string): void {
 
 <style lang="scss">
 .task {
-  border: 1px solid #535568;
   border-radius: 10px;
   display: flex;
-  background-color: #383a4c;
-  color: #fff;
+  align-items: center;
+  height: 60px;
+  font-size: 16px;
+  padding: 0 20px;
+  font-family: "Inter", sans-serif;
 }
 </style>
