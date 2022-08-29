@@ -46,8 +46,8 @@ export const TodoStore = defineStore('main', {
     },
     async updateTodo(id: string, body: body) {
       try {
-        debugger
-        await axios.put(`${location}/todo/${id}`, body);
+        const { data } = await axios.put(`${location}/todo/${id}`, body);
+        return data;
       } catch (error) {
         console.error(error);
         
