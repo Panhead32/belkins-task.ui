@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 import { Todo } from "../models/todo.interface";
 
-const location: string = 'http://localhost:3000'
+const location: string = 'https://belkins-task.herokuapp.com'
 
 interface body {
   title?: string;
@@ -18,7 +18,7 @@ export const TodoStore = defineStore('main', {
     setTasks() {
       this.todos
     },
-    async getTodos(): array {
+    async getTodos() {
       try {
         const { data } = await axios.get(`${location}/todo`);
         return data
