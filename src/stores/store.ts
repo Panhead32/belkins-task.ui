@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
-import axios  from "axios";
+import axios from "axios";
+import { Todo } from "../models/todo.interface";
+
 const location: string = 'http://localhost:3000'
 
 interface body {
@@ -9,7 +11,7 @@ interface body {
 
 export const TodoStore = defineStore('main', {
   state: () => ({
-    todos: [],
+    todos: [] as Todo[],
   }),
   getters: {},
   actions: {
@@ -26,12 +28,12 @@ export const TodoStore = defineStore('main', {
     },
     async createTodo(title: string) {
       try {
-        await axios.post(`${location}/todo`, {
+        const { data } = await axios.post(`${location}/todo`, {
           title
         });
+        return data;
       } catch (error) {
         console.error(error);
-        
       }
     },
     async removeTodo(id: string) {

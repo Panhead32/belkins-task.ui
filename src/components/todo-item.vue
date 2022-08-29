@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task-item">
     <input type="checkbox" v-model="task.done" @click.stop />
     <span>{{ task.title }}</span>
     <div @click.stop="$emit('remove')">
@@ -26,5 +26,12 @@ defineProps<{
 }>();
 </script>
 
-<style scoped>
+<style lang="scss">
+.task-item {
+  background: #383a4c;
+  &:hover {
+    background: transparent;
+    border: 1px solid #535568;
+  }
+}
 </style>

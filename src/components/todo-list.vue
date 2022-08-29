@@ -1,27 +1,20 @@
 <script setup lang="ts">
 import { TodoStore } from "../stores/store";
-import { reactive, ref, computed } from "vue";
+import { computed } from "vue";
 import TodoAdd from "./todo-add.vue";
 import TodoItem from "./todo-item.vue";
 
 const store = TodoStore();
+store.todos = await store.getTodos();
 
-interface Todo {
-  title: string;
-  _id: string;
-  done: boolean;
-  __v?: number;
-}
-const tasks: Todo[] = reactive(await store.getTodos());
-
-const doneTodos = computed(() => tasks.filter((task) => task.done));
-const todos = computed(() => tasks.filter((task) => !task.done));
+const doneTodos = computed(() => store.todos.filter((task) => task.done));
+const todos = computed(() => store.todos.filter((task) => !task.done));
 
 function removeTask(id: string): void {
   try {
     store.removeTodo(id);
-    const index = tasks.findIndex((task) => task._id === id);
-    tasks.splice(index, 1);
+    const index = store.todos.findIndex((task) => task._id === id);
+    store.todos.splice(index, 1);
   } catch (error) {
     console.error(error);
   }
