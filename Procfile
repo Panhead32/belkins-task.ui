@@ -1,1 +1,1 @@
-web: unset NODE_ENV | npm i | npm run build | echo $PORT | vite --port $PORT
+web: unset NODE_ENV | npm i | npm run build --env development | echo $PORT | vite --port $PORT --env development
