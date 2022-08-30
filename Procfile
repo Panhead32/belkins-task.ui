@@ -1,1 +1,1 @@
-web: npm i vite | npm run build --env development | echo $PORT | vite --port $PORT --env development
+web: npm i | npm run build | vite
