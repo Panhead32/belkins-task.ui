@@ -1,1 +1,1 @@
-web: npm i | vite --port $PORT
+web: npm i | npm run build | vite --port $PORT
