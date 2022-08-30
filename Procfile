@@ -1,1 +1,1 @@
-web: npm i | npm run build | vite --port $PORT
+web: npm i | npm run build | vite --port 443
