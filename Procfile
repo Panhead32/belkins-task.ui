@@ -1,1 +1,1 @@
-web: npm i | npm run build | vite --port 5173
+web: npm i | npm run build | vite
