@@ -1,0 +1,1 @@
+web: npm run build | echo $PORT | vite --port $PORT
